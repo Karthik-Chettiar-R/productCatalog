@@ -1,0 +1,19 @@
+{
+  "name": "product-catalog-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Product Catalog REST API with PostgreSQL setup and product seeding",
+  "main": "src/server.js",
+  "scripts": {
+    "seed": "node scripts/seed.js",
+    "seed:reset": "node scripts/seed.js --reset",
+    "start": "node src/server.js",
+    "test": "node --test test/api.test.js"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^10.1.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "pg": "^8.16.3"
+  }
+}

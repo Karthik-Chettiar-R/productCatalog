@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Browse the product catalog">
+  <title>Product Catalog</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">Inventory browser</p>
+        <h1>Product Catalog</h1>
+        <p class="subtitle">Search, filter, and browse the latest products.</p>
+      </div>
+    </header>
+
+    <section class="filters" aria-labelledby="filters-title">
+      <h2 id="filters-title">Find products</h2>
+      <form id="filters-form">
+        <div class="filter-top-row">
+          
+
+          <label class="search-field">
+            <span>Search</span>
+            <input id="search" name="search" type="search" placeholder="Name or description">
+          </label>
+          <label class="checkbox-field">
+            <input id="inStock" name="inStock" type="checkbox">
+            <span>In stock only</span>
+          </label>
+        </div>
+
+        <div class="filter-options-row">
+          <label>
+            <span>Category</span>
+            <select id="category" name="category">
+              <option value="">All categories</option>
+              <option value="electronics">Electronics</option>
+              <option value="clothing">Clothing</option>
+              <option value="books">Books</option>
+              <option value="home">Home</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Minimum price</span>
+            <input id="priceMin" name="priceMin" type="number" min="0" step="0.01" placeholder="0.00">
+          </label>
+
+          <label>
+            <span>Maximum price</span>
+            <input id="priceMax" name="priceMax" type="number" min="0" step="0.01" placeholder="No limit">
+          </label>
+
+          <label>
+            <span>Sort by</span>
+            <select id="sort" name="sort">
+              <option value="name">Name</option>
+              <option value="price">Price</option>
+              <option value="rating">Rating</option>
+              <option value="stock">Stock</option>
+              <option value="created_at" selected>Created Date</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Order</span>
+            <select id="order" name="order">
+              <option value="asc">Ascending</option>
+              <option value="desc" selected>Descending</option>
+            </select>
+          </label>
+
+          <button class="button secondary" type="reset">Clear filters</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="catalog" aria-labelledby="catalog-title">
+      <div class="catalog-heading">
+        <div>
+          <h2 id="catalog-title">Products</h2>
+          <p id="result-count" class="result-count" aria-live="polite"></p>
+        </div>
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+      </div>
+
+      <div id="loading" class="message" hidden>Loading products...</div>
+      <div id="error" class="message error" hidden></div>
+      <div id="empty" class="message" hidden>No products match your filters.</div>
+
+      <div id="table-wrap" class="table-wrap">
+        <table>
+          <caption class="visually-hidden">Product catalog results</caption>
+          <thead>
+            <tr>
+              <th scope="col" data-sort="name"><button class="sort-button" type="button">Name <span aria-hidden="true"></span></button></th>
+              <th scope="col" data-sort="category"><button class="sort-button" type="button">Category <span aria-hidden="true"></span></button></th>
+              <th scope="col" data-sort="price"><button class="sort-button" type="button">Price <span aria-hidden="true"></span></button></th>
+              <th scope="col" data-sort="stock"><button class="sort-button" type="button">Stock <span aria-hidden="true"></span></button></th>
+              <th scope="col" data-sort="rating"><button class="sort-button" type="button">Rating <span aria-hidden="true"></span></button></th>
+              <th scope="col" data-sort="created_at"><button class="sort-button" type="button">Created <span aria-hidden="true"></span></button></th>
+            </tr>
+          </thead>
+          <tbody id="product-rows"></tbody>
+        </table>
+      </div>
+
+      <nav class="pagination" aria-label="Product pages">
+        <div class="pagination-controls">
+          <button id="previous" class="button secondary" type="button" disabled>Previous</button>
+          <span id="page-status" aria-live="polite">Page 1</span>
+          <button id="next" class="button primary" type="button" disabled>Next</button>
+        </div>
+        <label class="page-size-control">
+          <span>Products per page</span>
+          <select id="limit" name="limit">
+            <option value="10">10</option>
+            <option value="20" selected>20</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+        </label>
+      </nav>
+    </section>
+  </main>
+</body>
+</html>
